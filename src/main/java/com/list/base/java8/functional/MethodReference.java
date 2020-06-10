@@ -1,6 +1,10 @@
 package com.list.base.java8.functional;
 
+import com.list.base.java8.functional.java8inaction.chap3.Apple;
+
 import java.util.Arrays;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 /**
  * 方法引用
@@ -35,5 +39,21 @@ public class MethodReference {
 		//Arrays.sort(array, MethodReference::compareTo);//错误，第一个参数this并不是String实例，而是MethodReference实例
 		//Arrays.sort(array, String::compareToIgnoreCase);//类:实例方法引用，第一次参数为类本身实例，写法隐藏了this
 		System.out.println(String.join(", ", array));
+        constructor();
+	}
+
+	/**
+	 * 构造器方法引用
+	 * @author lisongtao3
+	 * @date 2020/6/7
+	 **/
+	public static void constructor(){
+		Supplier<Apple> supplier = Apple::new;//需要类有空构造器
+		Apple apple = supplier.get();
+        apple.setWeight(3);
+		BiFunction<Integer, String, Apple> biFunction = Apple::new;
+		apple = biFunction.apply(1, "red");
+		System.out.println(apple);
+
 	}
 }
