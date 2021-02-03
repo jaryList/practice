@@ -113,11 +113,11 @@ public class Method {
 
     public static void copyTest(){
         Object[] array_object = new Object[]{1, 2};
-        Collection<Object> collection_object = new ArrayList<>();
+        Collection<Object> collection_object = new ArrayList<Object>();
         fromArrayToCollection(array_object, collection_object);
 
         String[] array_string = new String[]{"1","2"};
-        Collection<String> collection_string = new ArrayList<>();
+        Collection<String> collection_string = new ArrayList<String>();
         fromArrayToCollection(array_string, collection_string);
 
         //查看方法签名(cmd + mouse on)，都识别为object
@@ -125,7 +125,7 @@ public class Method {
         fromArrayToCollection(array_string, collection_object);
 
         //上面类似这个list object添加 string
-        ArrayList<Object> arrayList = new ArrayList<>();
+        ArrayList<Object> arrayList = new ArrayList<Object>();
         arrayList.add("kk");
 
         //指定同类型拷贝
@@ -168,7 +168,7 @@ public class Method {
     }
 
     public void test_test(){
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         //error
         //certainType(list);
 

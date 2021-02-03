@@ -20,9 +20,9 @@ public class Apple<T> {
     }
 
     public static void main(String[] args) {
-        Apple<String> appleStr = new Apple<>("appleString");
+        Apple<String> appleStr = new Apple<String>("appleString");
         System.out.println(appleStr.getInfo());
-        Apple<Double> appleDb = new Apple<>(1.2);
+        Apple<Double> appleDb = new Apple<Double>(1.2);
         System.out.println(appleDb.getInfo());
         //都是Apple.class, 没有Apple<String>.class和Apple<Double>.class;因为擦除、擦拭
         System.out.println(appleStr.getClass() == appleDb.getClass());

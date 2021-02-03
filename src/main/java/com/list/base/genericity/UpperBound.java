@@ -19,8 +19,8 @@ public class UpperBound<T extends Number & Serializable> {
     }
 
     public static void main(String[] args) {
-        UpperBound<Integer> ui = new UpperBound<>();
-        UpperBound<Double> ud = new UpperBound<>();
+        UpperBound<Integer> ui = new UpperBound<Integer>();
+        UpperBound<Double> ud = new UpperBound<Double>();
         //error,不是指定范围的子类
         //UpperBound<String> us = new UpperBound<String>();
     }

@@ -1,5 +1,8 @@
 package com.list.base.genericity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //没有指定类型，默认是Object
 public class A extends Apple {
 
@@ -29,6 +32,8 @@ public class A extends Apple {
         A ao = new A(1.2);
         System.out.println(ao.getInfo());
 
-
+        List<?> list = new ArrayList<A>();
+        List<? extends A> list1 = new ArrayList<A>();
+        List<? super A> list2 = new ArrayList<A>();
     }
 }

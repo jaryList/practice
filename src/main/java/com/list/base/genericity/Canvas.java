@@ -25,7 +25,7 @@ public class Canvas {
     }
 
     public static void main(String[] args) {
-        List<Circle> circleList = new ArrayList<>();
+        List<Circle> circleList = new ArrayList<Circle>();
         Circle circle = new Circle();
         circleList.add(circle);
         Canvas canvas = new Canvas();

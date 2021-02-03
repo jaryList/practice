@@ -1,6 +1,10 @@
 package com.list.base.annotation;
 
+import com.list.base.annotation.inherited.Son;
 import org.junit.Test;
+
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
 
 /**
  * 注解测试类
@@ -22,4 +26,12 @@ public class AnnotationTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void inheritedTest(){
+        Son son = new Son();
+        Annotation[] annotations =  son.getClass().getAnnotations();
+        Arrays.stream(annotations).forEach(annotation -> System.out.println(annotation));
+    }
+
 }
