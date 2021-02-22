@@ -1,5 +1,6 @@
 package com.list;
 
+import com.list.thread.MyForkJoinPool;
 import com.list.thread.MyThreadLocal;
 import org.junit.Test;
 
@@ -33,6 +34,18 @@ public class ThreadTest {
     public void ttlTtlExecutorsTest() throws Exception{
         MyThreadLocal threadLocal = new MyThreadLocal();
         threadLocal.ttlTtlExecutors();
+    }
+
+    @Test
+    public void debugForkJoinPoolTest(){
+        MyForkJoinPool myForkJoinPool = new MyForkJoinPool();
+        myForkJoinPool.debugForkJoinPool();
+    }
+
+    @Test
+    public void forkJoinPoolRecycleThreadTest(){
+        MyForkJoinPool myForkJoinPool = new MyForkJoinPool();
+        myForkJoinPool.forkJoinPoolRecycleThread();
     }
 
 }
