@@ -68,13 +68,13 @@ public class MyThreadLocal {
         TransmittableThreadLocal<String> transmittableThreadLocal = new TransmittableThreadLocal();
         transmittableThreadLocal.set("parent");
         Thread thread = new Thread(()->{
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
         });
         thread.setName("sonThread");
         thread.start();
         try {
             Thread.sleep(100);
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class MyThreadLocal {
         TransmittableThreadLocal<String> transmittableThreadLocal = new TransmittableThreadLocal();
         transmittableThreadLocal.set("parent");
         //此处用这个只是为了方便，正常使用spring线程池,ThreadPoolTaskExecutor
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
         executorService.submit(TtlRunnable.get(()->{
             System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
             try {
@@ -102,6 +102,7 @@ public class MyThreadLocal {
             transmittableThreadLocal.remove();
             System.out.println(Thread.currentThread().getName() + ":remove:" + transmittableThreadLocal.get());
         }));
+        transmittableThreadLocal.set("parent change");
         executorService.submit(TtlRunnable.get(()->{
             System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
             try {
@@ -129,15 +130,17 @@ public class MyThreadLocal {
     public void ttlRunnable() throws Exception{
         TransmittableThreadLocal<String> transmittableThreadLocal = new TransmittableThreadLocal();
         transmittableThreadLocal.set("parent");
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
         executorService.submit(()->{
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
+            //transmittableThreadLocal.remove();
         });
+        transmittableThreadLocal.set("parent change");
         executorService.submit(()->{
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
         });
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+        System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
     }
 
 
@@ -155,15 +158,17 @@ public class MyThreadLocal {
     public void ttlTtlExecutors() throws Exception{
         TransmittableThreadLocal<String> transmittableThreadLocal = new TransmittableThreadLocal();
         transmittableThreadLocal.set("parent");
-        ExecutorService executorService = TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(2));
+        ExecutorService executorService = TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(1));
         executorService.submit(()->{
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
+            transmittableThreadLocal.remove();
         });
+        //transmittableThreadLocal.set("parent change");
         executorService.submit(()->{
-            System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+            System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
         });
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + "-" + transmittableThreadLocal.get());
+        System.out.println(Thread.currentThread().getName() + ":" + transmittableThreadLocal.get());
     }
 
 
