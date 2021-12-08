@@ -1,5 +1,7 @@
 package com.list.jike.sort;
 
+import java.util.Stack;
+
 /**
  * 冒泡排序
  */
@@ -35,5 +37,7 @@ public class BubbleSort {
 //       int[] array = {2, 4, 1, 5, 3};
         int[] array = {1, 2, 3, 4, 5};
         sort(array);
+        boolean a = array.length > 10;
+        System.out.println(a);
     }
 }

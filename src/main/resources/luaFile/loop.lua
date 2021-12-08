@@ -11,6 +11,7 @@ local table = {"a", "b", "c"}
 -- 泛型循环
 for i, v in ipairs(table) do
     print(i.. "-" .. v)
+    print("table = " .. table[i])
 end
 -- 一般循环，三个参数是 开始，截止(初始计算出且只计算一次)，步长(可选)
 for i = 1, 10, 2 do
