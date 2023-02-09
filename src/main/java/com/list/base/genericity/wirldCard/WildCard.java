@@ -1,4 +1,4 @@
-package com.list.base.genericity;
+package com.list.base.genericity.wirldCard;
 
 
 /**
@@ -11,6 +11,11 @@ package com.list.base.genericity;
  *
  * 换句话说，既不能读，也不能写，那只能做一些null判断：无限定通配符<?>很少使用，可以用<T>替换，同时它是所有<T>类型的超类。
  */
+
+import com.list.base.genericity.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 通配符
@@ -59,15 +64,34 @@ public class WildCard {
     public static void wildCard_super_set(Pair<? super Integer> p, Integer n) {
         p.setFirst(n);
         p.setLast(n);
-        //不是不能get，是不能赋给确定类型
+        /**
+         * 不是不能get，是不能赋给确定类型
+         * error 赋值即涉及向上转型
+         */
         p.getFirst();
+        /*Integer i = p.getFirst();
+        Number number = p.getFirst();*/
+    }
+
+    /**
+     * 通配符下限，设值
+     */
+    public static void wildCard_super_set(List<? super A> list){
+        //下限是可以设置，也是收边界的限制，A的父类即超出A的范围是不可以的
+        //list.add(new SA());
+        list.add(new A());
+        list.add(new B());
+        list.add(new C());
     }
 
     /**
      * 通配符下限，获取
      */
     public static void wildCard_super_get(Pair<? super Integer> p){
-        //error,get的时候? super Integer，不能赋给确定类型
+        /**
+         * error,get的时候? super Integer，不能赋给确定类型
+         * @see #wildCard_super_set(Pair, Integer)
+         */
         //Integer i = p.getFirst();
         //Number n = p.getLast();
         //不是不能get，是不能赋给确定类型
@@ -86,6 +110,12 @@ public class WildCard {
         System.out.println("extend_set = " + extend_set);
 
         wildCard_super_get(p);
+
+        List<SA> listSA = new ArrayList<>();
+        //及时传的是List<SA>，内部也不可以list.add(new SA())，因为如下面可能传入的是List<A>,list.add(new SA())就会向上转型
+        wildCard_super_set(listSA);
+        List<A> listA = new ArrayList<>();
+        wildCard_super_set(listA);
 
     }
 

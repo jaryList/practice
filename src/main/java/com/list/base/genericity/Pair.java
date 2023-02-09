@@ -1,6 +1,6 @@
 package com.list.base.genericity;
 
-class Pair<T> {
+public class Pair<T> {
     private T first;
     private T last;
 
